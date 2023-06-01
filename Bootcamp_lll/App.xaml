@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Bootcamp_lll"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+ 
     </Application.Resources>
 </Application>
