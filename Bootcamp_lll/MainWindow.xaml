@@ -4,12 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bootcamp_lll"
-<<<<<<< HEAD
         mc:Ignorable="d"
-        Title="MainWindow"
-        Height="450"
-        Width="800">
-=======
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,7 +15,6 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="450" Width="800">
->>>>>>> 6368919d1b6e3fb8c7825761bb36d713d6c6aaff
     <Grid>
         
     </Grid>
