@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bootcamp_lll"
+        mc:Ignorable="d"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -11,10 +12,511 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow"
+        Height="650"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowState="Normal"
+        MouseDown="Window_MouseDown"
+        >
+
+    <Window.Resources>
+        <!-- Start: Button | Minimize | Maximize | Close -->
+        <Style x:Key="IconButtonsStyle"
+               TargetType="{x:Type Button}">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="Height"
+                    Value="25" />
+            <Setter Property="Width"
+                    Value="25" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="bd"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Path Name="ico"
+                                  Data="{TemplateBinding Content}"
+                                  Fill="{DynamicResource ActionIconColor}"
+                                  Height="10"
+                                  Width="10"
+                                  Stretch="Uniform" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="{DynamicResource SecundaryBackgroundColor}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver"
+                                               Value="True" />
+                                    <Condition Property="Tag"
+                                               Value="IsCloseButton" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background"
+                                        Value="#F72626" />
+                                <Setter TargetName="ico"
+                                        Property="Fill"
+                                        Value="{DynamicResource PrimaryBackgroundColor}" />
+                            </MultiTrigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="ico"
+                                        Property="Fill"
+                                        Value="{DynamicResource PrimaryBackgroundColor}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- End: Button | Minimize | Maximize | Close -->
+
+        <!-- Start: Menu Icon -->
+        <Style x:Key="MenuIconStyle"
+               TargetType="{x:Type ToggleButton}">
+            <Setter Property="Width"
+                    Value="30" />
+            <Setter Property="Height"
+                    Value="30" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <Viewbox Height="20"
+                                     Width="20"
+                                     Margin="0 6 0 0"
+                                     Stretch="UniformToFill">
+                                <Canvas Height="512"
+                                        Width="512">
+                                    <Path x:Name="ico"
+                                          Data="m32 0h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0"
+                                          Fill="{DynamicResource PrimaryGrayColor}"
+                                          Margin="0 0 0 0" />
+                                    <Path x:Name="ico1"
+                                          Data="m32 128h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0"
+                                          Fill="{DynamicResource PrimaryGrayColor}"
+                                          Margin="0 20 0 0" />
+                                    <Path x:Name="ico2"
+                                          Data="m32 256h448c17.671875 0 32 14.328125 32 32s-14.328125 32-32 32h-448c-17.671875 0-32-14.328125-32-32s14.328125-32 32-32zm0 0"
+                                          Fill="{DynamicResource PrimaryGrayColor}"
+                                          Margin="0 40 0 0" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="Transparent" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="#FFFFFF" />
+                                <Setter Property="Fill"
+                                        TargetName="ico"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <Setter Property="Fill"
+                                        TargetName="ico1"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <Setter Property="Fill"
+                                        TargetName="ico2"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="Transparent" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="#FFFFFF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- End: Menu Icon -->
+
+        <!-- Start: VerticalMenuStyle -->
+        <Style x:Key="MenuRadioButtonStyle"
+               TargetType="{x:Type RadioButton}">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource PrimaryGrayColor}" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="FontWeight"
+                    Value="Normal" />
+            <Setter Property="FontSize"
+                    Value="15" />
+            <Setter Property="Height"
+                    Value="40" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border x:Name="menuButton"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Selected  -->
+                                <Border x:Name="btnSelected"
+                                        Grid.ColumnSpan="2"
+                                        CornerRadius="4"
+                                        Width="210"
+                                        HorizontalAlignment="Right" />
+
+                                <!-- Indicator -->
+                                <Rectangle Name="Indicator"
+                                           HorizontalAlignment="Left"
+                                           Width="4"
+                                           Height="40"
+                                           VerticalAlignment="Center"
+                                           RadiusX="2"
+                                           RadiusY="2" />
+
+                                <!-- Icon -->
+                                <Path x:Name="Icon"
+                                      Data="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
+                                      Height="24"
+                                      Width="24"
+                                      Stretch="None"
+                                      Fill="{DynamicResource PrimaryGrayColor}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Right"
+                                      Margin="0 0 5 0" />
+
+                                <!-- Text -->
+                                <TextBlock x:Name="txtName"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="12 0 0 0"
+                                           Grid.Column="1"
+                                           Text="{TemplateBinding Content}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           FontSize="{TemplateBinding FontSize}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="txtName"
+                                        Property="Foreground"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <Setter TargetName="Icon"
+                                        Property="Fill"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <!-- Optional 
+                            <Setter TargetName="Indicator" Property="Fill" Value="red"/>
+                            <Setter TargetName="Indicator" Property="Height" Value="20"/>-->
+                            </Trigger>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="Icon"
+                                        Property="Fill"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <Setter TargetName="Indicator"
+                                        Property="Fill"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                                <Setter TargetName="Indicator"
+                                        Property="Height"
+                                        Value="20" />
+                                <Setter TargetName="btnSelected"
+                                        Property="Background"
+                                        Value="{DynamicResource SecundaryGrayColor}" />
+                                <Setter TargetName="txtName"
+                                        Property="Foreground"
+                                        Value="{DynamicResource PrimaryBlueColor}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- End: VerticalMenuStyle -->
+
+
+        <!-- Background Colors -->
+        <SolidColorBrush x:Key="PrimaryBackgroundColor"
+                         Color="#f3f3f3" />
+        <SolidColorBrush x:Key="SecundaryBackgroundColor"
+                         Color="#f9f9f9" />
+
+        <!-- Primary Colors -->
+        <SolidColorBrush x:Key="PrimaryBlueColor"
+                         Color="#5B7FFF" />
+        <SolidColorBrush x:Key="PrimaryGrayColor"
+                         Color="#BFBFC4" />
+
+        <!-- Secundary Colors -->
+        <SolidColorBrush x:Key="SecundaryBlueColor"
+                         Color="#CEE8FB" />
+        <SolidColorBrush x:Key="SecundaryGrayColor"
+                         Color="#EEEEEE" />
+
+        <!-- Typograhy Colors -->
+        <SolidColorBrush x:Key="TextPrimaryColor"
+                         Color="#020F16" />
+        <SolidColorBrush x:Key="TextSecundaryColor"
+                         Color="#434344" />
+
+        <!-- Icons Colors -->
+        <SolidColorBrush x:Key="ActionIconColor"
+                         Color="#434344" />
+
+
+        <!-- Logo -->
+        <PathGeometry x:Key="logo"
+                      Figures="M12,2L12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10C22,6.5,17.5,2,12,2z M17,12c0,2.8-2.2,5-5,5c-2.8,0-5-2.2-5-5c0-2.8,2.2-5,5-5C14.8,7,17,9.2,17,12L17,12z" />
+
+        <!-- Menu Icons -->
+        <PathGeometry x:Key="home"
+                      Figures="M10.5495 2.53189C11.3874 1.82531 12.6126 1.82531 13.4505 2.5319L20.2005 8.224C20.7074 8.65152 21 9.2809 21 9.94406V19.7468C21 20.7133 20.2165 21.4968 19.25 21.4968H15.75C14.7835 21.4968 14 20.7133 14 19.7468V14.2468C14 14.1088 13.8881 13.9968 13.75 13.9968H10.25C10.1119 13.9968 9.99999 14.1088 9.99999 14.2468V19.7468C9.99999 20.7133 9.2165 21.4968 8.25 21.4968H4.75C3.7835 21.4968 3 20.7133 3 19.7468V9.94406C3 9.2809 3.29255 8.65152 3.79952 8.224L10.5495 2.53189ZM12.4835 3.6786C12.2042 3.44307 11.7958 3.44307 11.5165 3.6786L4.76651 9.37071C4.59752 9.51321 4.5 9.72301 4.5 9.94406V19.7468C4.5 19.8849 4.61193 19.9968 4.75 19.9968H8.25C8.38807 19.9968 8.49999 19.8849 8.49999 19.7468V14.2468C8.49999 13.2803 9.2835 12.4968 10.25 12.4968H13.75C14.7165 12.4968 15.5 13.2803 15.5 14.2468V19.7468C15.5 19.8849 15.6119 19.9968 15.75 19.9968H19.25C19.3881 19.9968 19.5 19.8849 19.5 19.7468V9.94406C19.5 9.72301 19.4025 9.51321 19.2335 9.37071L12.4835 3.6786Z" />
+        <PathGeometry x:Key="users"
+                      Figures="M16.5 15.5C18.22 15.5 20.25 16.3 20.5 16.78V17.5H12.5V16.78C12.75 16.3 14.78 15.5 16.5 15.5M16.5 14C14.67 14 11 14.92 11 16.75V19H22V16.75C22 14.92 18.33 14 16.5 14M9 13C6.67 13 2 14.17 2 16.5V19H9V17.5H3.5V16.5C3.5 15.87 6.29 14.34 9.82 14.5A5.12 5.12 0 0 1 11.37 13.25A12.28 12.28 0 0 0 9 13M9 6.5A1.5 1.5 0 1 1 7.5 8A1.5 1.5 0 0 1 9 6.5M9 5A3 3 0 1 0 12 8A3 3 0 0 0 9 5M16.5 8.5A1 1 0 1 1 15.5 9.5A1 1 0 0 1 16.5 8.5M16.5 7A2.5 2.5 0 1 0 19 9.5A2.5 2.5 0 0 0 16.5 7Z" />
+        <PathGeometry x:Key="clipboard"
+                      Figures="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H9.18C9.6,1.84 10.7,1 12,1C13.3,1 14.4,1.84 14.82,3H19M12,3A1,1 0 0,0 11,4A1,1 0 0,0 12,5A1,1 0 0,0 13,4A1,1 0 0,0 12,3M7,7V5H5V19H19V5H17V7H7M12,9A2,2 0 0,1 14,11A2,2 0 0,1 12,13A2,2 0 0,1 10,11A2,2 0 0,1 12,9M8,17V16C8,14.9 9.79,14 12,14C14.21,14 16,14.9 16,16V17H8Z" />
+        <PathGeometry x:Key="gear"
+                      Figures="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z" />
+        <!-- Minimize | Maximized | Restore | Close Icons -->
+        <PathGeometry x:Key="minimize"
+                      Figures="M19 13H5a1 1 0 0 1 0-2h14a1 1 0 0 1 0 2z" />
+        <PathGeometry x:Key="maximize"
+                      Figures="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z" />
+        <PathGeometry x:Key="restore"
+                      Figures="M18 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1z M15 11H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z" />
+
+       
+
+        <PathGeometry x:Key="close"
+                      Figures="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
+
+
+
+
+    </Window.Resources>
+    
+    <Border CornerRadius="8"
+            Background="{DynamicResource PrimaryBackgroundColor}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Start: GridColum Left-->
+            <Border CornerRadius="8 0 0 8"
+                    Background="{DynamicResource SecundaryBackgroundColor}">
+                <Grid x:Name="gridMenu"
+                      Width="60"
+                      Cursor="">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- Logo -->
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Top">
+                        <Path Data="{DynamicResource logo}"
+                              Margin="16 0 0 0"
+                              Stretch="Fill"
+                              Fill="{DynamicResource PrimaryBlueColor}"
+                              Width="25"
+                              Height="25"
+                              HorizontalAlignment="Left" />
+                        <Label Content="BootCamp"
+                               Foreground="{DynamicResource PrimaryBlueColor}"
+                               FontWeight="Bold"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               HorizontalContentAlignment="Left"
+                               HorizontalAlignment="Left"
+                               Margin="14 0 0 0" />
+                    </StackPanel>
+
+                    <!-- Menu -->
+                    <ToggleButton x:Name="btnMenu"
+                                  HorizontalAlignment="Right"
+                                  BorderThickness="0"
+                                  Background="Transparent"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MenuIconStyle}"
+                                  Margin="0 0 15 0">
+                        <ToggleButton.Triggers>
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="HideStackPanel">
+                                        <DoubleAnimation Storyboard.TargetName="gridMenu"
+                                                         Storyboard.TargetProperty="Width"
+                                                         BeginTime="0:0:0"
+                                                         From="200"
+                                                         To="60"
+                                                         Duration="0:0:0.3">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="ShowStackPanel">
+                                        <DoubleAnimation Storyboard.TargetName="gridMenu"
+                                                         Storyboard.TargetProperty="Width"
+                                                         BeginTime="0:0:0"
+                                                         From="60"
+                                                         To="200"
+                                                         Duration="0:0:0.3">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ToggleButton.Triggers>
+                    </ToggleButton>
+
+                    
+                    <!-- Buttons(RadioButton) to Menu -->
+                    <StackPanel Grid.Row="3">
+                        <RadioButton x:Name="rdHome"
+                                     IsChecked="True"
+                                     Content="Inicio"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="{DynamicResource home}"
+                                     Click="rdHome_Click" />
+                        <RadioButton x:Name="rdUsers"
+                                     Content="Registros"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="{DynamicResource users}"
+                                     Margin="0 5 0 5"
+                                     Click="rdUsers_Click" />
+                        <RadioButton x:Name="rdListUsers"
+                                     Content="Listas"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="{DynamicResource clipboard}"
+                                     Click="rdListUsers_Click" />
+                        <RadioButton x:Name="rdOptions"
+                                     Content="Opciones"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="{DynamicResource gear}"
+                                     Margin="0 5 0 5"
+                                     Click="rdOptions_Click" />
+                    </StackPanel>
+
+                    <!--<StackPanel Grid.Row="3"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal"
+                                Width="200"
+                                Margin="0 0 0 20">
+                        --><!--<Ellipse Width="40"
+                                 Height="40"
+                                 Margin="10 0 0 0">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="Assets/Avatars/avatar-2.jpg" />
+                            </Ellipse.Fill>
+                        </Ellipse>-->
+                        <!--<StackPanel Orientation="Vertical"
+                                    Margin="8 0 0 0">
+                            <Label Content="Scarlett Gwen"
+                                   Foreground="{DynamicResource TextPrimaryColor}"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   HorizontalContentAlignment="Center"
+                                   HorizontalAlignment="Left" />
+                            <Label Content="scarlettgwen@gmail.com"
+                                   Foreground="{DynamicResource PrimaryGrayColor}"
+                                   FontSize="11"
+                                   FontWeight="Regular"
+                                   HorizontalContentAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="0 -10 0 0" />
+                        </StackPanel>--><!--
+                    </StackPanel>-->
+                </Grid>
+            </Border>
+            <!-- End: GridColum Left-->
+
+            <!-- Start: GridColumn Rigth -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- Start: Button Close | Restore | Minimize -->
+                <StackPanel Grid.Row="0"
+                            Grid.Column="4"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,5,10,0"
+                            Height="30"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft">
+                    <Button x:Name="btnClose"
+                            Style="{StaticResource IconButtonsStyle}"
+                            Content="{DynamicResource close}"
+                            Click="btnClose_Click"
+                            Tag="IsCloseButton" />
+                    <Button x:Name="btnRestore"
+                            Margin="5,0"
+                            Click="btnRestore_Click"
+                            Cursor="">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}"
+                                   BasedOn="{StaticResource IconButtonsStyle}">
+                                <Setter Property="Content"
+                                        Value="{DynamicResource maximize}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}"
+                                                 Value="Maximized">
+                                        <Setter Property="Content"
+                                                Value="{DynamicResource restore}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnMinimize"
+                            Style="{DynamicResource IconButtonsStyle}"
+                            Content="{DynamicResource minimize}"
+                            Click="btnMinimize_Click" />
+                </StackPanel>
+                <!-- End: Button Close | Restore | Minimize -->
+
+                <Border Grid.Row="1"
+                        Margin="10">
+                    <Frame x:Name="PagesNavigation"
+                           NavigationUIVisibility="Hidden">
+                        <!-- Page Content -->
+                    </Frame>
+                </Border>
+            </Grid>
+            <!-- Start: GridColumn Rigth -->
+        </Grid>
+    </Border>
 </Window>
