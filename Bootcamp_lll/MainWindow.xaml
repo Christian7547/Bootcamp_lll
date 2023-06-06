@@ -410,16 +410,16 @@
                                      Tag="{DynamicResource home}"
                                      Click="rdHome_Click" />
                         <RadioButton x:Name="rdUsers"
-                                     Content="Registros"
+                                     Content="Participantes"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="{DynamicResource users}"
                                      Margin="0 5 0 5"
                                      Click="rdUsers_Click" />
-                        <RadioButton x:Name="rdListUsers"
-                                     Content="Listas"
+                        <RadioButton x:Name="rdTeams"
+                                     Content="Equipos"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="{DynamicResource clipboard}"
-                                     Click="rdListUsers_Click" />
+                                     Click="rdTeams_Click" />
                         <RadioButton x:Name="rdOptions"
                                      Content="Opciones"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
@@ -510,10 +510,7 @@
 
                 <Border Grid.Row="1"
                         Margin="10">
-                    <Frame x:Name="PagesNavigation"
-                           NavigationUIVisibility="Hidden">
-                        <!-- Page Content -->
-                    </Frame>
+                    <Grid x:Name="gridMain"/>
                 </Border>
             </Grid>
             <!-- Start: GridColumn Rigth -->

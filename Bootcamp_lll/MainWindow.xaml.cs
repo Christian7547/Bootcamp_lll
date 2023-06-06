@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bootcamp_lll.Controllers;
+using Bootcamp_lll.Views;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,6 +8,7 @@ namespace Bootcamp_lll
 {
     public partial class MainWindow : Window
     {
+        ContestantController contestantController = new();
         public MainWindow()
         {
             InitializeComponent();
@@ -44,19 +47,25 @@ namespace Bootcamp_lll
         #region Views <> Pages
         private void rdHome_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Views/HomePage.xaml", UriKind.RelativeOrAbsolute));
+            
         }
         private void rdUsers_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Views/UsersPage.xaml", UriKind.RelativeOrAbsolute));
+            uscMenuContestant uscMenuContestant = new(contestantController);
+            gridMain.Children.Clear();
+            gridMain.Children.Add(uscMenuContestant);
         }
-        private void rdListUsers_Click(object sender, RoutedEventArgs e)
+
+        private void rdTeams_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Views/ListUsersPage.xaml", UriKind.RelativeOrAbsolute));
+            uscMenuTeams uscMenuTeams = new(contestantController);
+            gridMain.Children.Clear();
+            gridMain.Children.Add(uscMenuTeams);
         }
+
         private void rdOptions_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Views/OptionsPage.xaml", UriKind.RelativeOrAbsolute));
+            
         }
         #endregion
     }
