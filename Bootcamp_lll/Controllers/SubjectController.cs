@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bootcamp_lll.Controllers
 {
-    internal class SubjectController
+    public class SubjectController
     {
         List<Subject> subjects = new List<Subject>()
         {

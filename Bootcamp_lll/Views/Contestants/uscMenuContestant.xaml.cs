@@ -21,10 +21,7 @@ namespace Bootcamp_lll.Views
 
         public void Select()
         {
-            foreach(var item in _controller!.GetMany())
-            {
-                dtgData.Items.Add(item);
-            }
+            _controller.GetContestants(dtgData);
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)

@@ -19,21 +19,18 @@ namespace Bootcamp_lll.Views
 {
     public partial class winFormTeam : Window
     {
-        #region Props
-        TeamController? _teamController;
+        TeamController _teamController;
         ContestantController _contestantController;
         ManagerController? _managerController;
         List<Contestant> contestants = new();
 
-        int managerId = 0;
-        #endregion
 
-        public winFormTeam(ContestantController contestant)
+        public winFormTeam(TeamController teamController, ContestantController contestant)
         {
             InitializeComponent();
+            _teamController = teamController;
             _contestantController = contestant;
-            FillComboBox();
-            cmbManager.SelectedIndex = 0;
+            FillSubjectsComboBox();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -43,43 +40,29 @@ namespace Bootcamp_lll.Views
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            _teamController = new();
-            _managerController = new();
             Team team = new()
             {
                 TeamName = txtNameTeam.Text,
-                ManagerId = managerId,
+                ManagerId = int.Parse(cmbManager.SelectedValue.ToString()!),
                 SubjectId = int.Parse(cmbSubject.SelectedValue.ToString()!),
                 Contestants = contestants
             };
             _teamController.NewTeam(team);
-            string nameManager = _teamController.GetManager(team.ManagerId);
             Close();
             uscMenuTeams._uscMenuTeams!.lstTeams.Items.Clear();
-            foreach (var item in _teamController.GetMany())
-            {
-                uscMenuTeams._uscMenuTeams.lstTeams.Items.Add(item.TeamName);
-                uscMenuTeams._uscMenuTeams.lstTeams.Items.Add(item.SubjectId);
-                uscMenuTeams._uscMenuTeams.lstTeams.Items.Add(nameManager);
-                foreach (var i in item.Contestants!)
-                {
-                    uscMenuTeams._uscMenuTeams.lstTeams.Items.Add(i.Name + " " + i.LastName);
-                }
-            }
+            uscMenuTeams._uscMenuTeams!.Select();
         }
 
         private void cmbSubject_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cmbManager.Items.Clear();
+            cmbManager.ItemsSource = null;
             dtgData.Items.Clear();
-
-            _teamController = new();
-            ComboBox manager = _teamController.GetManagers(int.Parse(cmbSubject.SelectedValue.ToString()!), cmbManager);
-            _teamController.GetContestants(int.Parse(cmbSubject.SelectedValue.ToString()!), dtgData, _contestantController);
-            if (cmbManager.SelectedItem == null)
-                cmbManager.Text = string.Empty;
-            else
-                managerId = int.Parse(manager.SelectedValuePath);  //CORREGIR
+            
+            if (cmbSubject.SelectedItem != null)
+            {
+                _teamController.GetManagers(int.Parse(cmbSubject.SelectedValue.ToString()!), cmbManager);
+                _teamController.GetContestants(int.Parse(cmbSubject.SelectedValue.ToString()!), dtgData, _contestantController);
+            }
         }
 
         private void ckBoxIsSelected_Checked(object sender, RoutedEventArgs e)
@@ -92,9 +75,8 @@ namespace Bootcamp_lll.Views
             contestants.Add(contestant);
         }
 
-        void FillComboBox()
+        void FillSubjectsComboBox()
         {
-            _teamController = new();
             SubjectController subjectController = new();
             foreach (var item in subjectController.GetMany())
                 cmbSubject.Items.Add(item);

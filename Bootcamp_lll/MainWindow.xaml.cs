@@ -9,6 +9,10 @@ namespace Bootcamp_lll
     public partial class MainWindow : Window
     {
         ContestantController contestantController = new();
+        ManagerController managerController = new();
+        SubjectController subjectController = new();
+        TeamController teamController = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,7 +62,7 @@ namespace Bootcamp_lll
 
         private void rdTeams_Click(object sender, RoutedEventArgs e)
         {
-            uscMenuTeams uscMenuTeams = new(contestantController);
+            uscMenuTeams uscMenuTeams = new(teamController, contestantController, managerController, subjectController);
             gridMain.Children.Clear();
             gridMain.Children.Add(uscMenuTeams);
         }

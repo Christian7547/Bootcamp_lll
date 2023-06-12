@@ -22,7 +22,7 @@
                     <ComboBox x:Name="cmbSubject" materialDesign:HintAssist.Hint="Asignatura" SelectedValuePath="Id" DisplayMemberPath="Name" materialDesign:HintAssist.IsFloating="True" Margin="15" Width="300" SelectionChanged="cmbSubject_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel >
-                    <ComboBox x:Name="cmbManager" materialDesign:HintAssist.Hint="Encargado" materialDesign:HintAssist.IsFloating="True" Margin="15" Width="300"/>
+                    <ComboBox x:Name="cmbManager" SelectedValuePath="Id" DisplayMemberPath="Name" materialDesign:HintAssist.Hint="Encargado" materialDesign:HintAssist.IsFloating="True" Margin="15" Width="300"/>
                 </StackPanel>
                 <StackPanel >
                     <ComboBox x:Name="cmbGrade" materialDesign:HintAssist.Hint="Nivel académico" materialDesign:HintAssist.IsFloating="True" Margin="15" Width="300">

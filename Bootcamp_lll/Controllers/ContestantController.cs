@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Bootcamp_lll.Controllers
 {
@@ -26,6 +27,24 @@ namespace Bootcamp_lll.Controllers
         public void AddNew(Contestant contestant)
         {
             this.contestants.Add(contestant);
+        }
+
+        public DataGrid GetContestants(DataGrid dataGrid)
+        {
+            SubjectController subjectController = new();
+            var query = contestants.Join(subjectController.GetMany(), c => c.SubjectId, s => s.Id,
+                (c, s) => new
+                {
+                    ID = c.Id,
+                    NameC = c.Name,
+                    LastNameC = c.LastName,
+                    EmailC = c.Email,
+                    GradeC = c.Grade,
+                    SubjectName = s.Name
+                });
+            foreach(var item in  query)
+                dataGrid.Items.Add(item);
+            return dataGrid;
         }
     }
 }

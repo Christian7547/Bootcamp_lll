@@ -41,8 +41,7 @@ namespace Bootcamp_lll.Views
             _contestanController.AddNew(_contestant);
             Close();
             uscMenuContestant._uscContestant!.dtgData.Items.Clear();
-            foreach (var item in _contestanController.GetMany())
-                uscMenuContestant._uscContestant!.dtgData.Items.Add(item);
+            uscMenuContestant._uscContestant!.Select();
         }
     }
 }

@@ -27,12 +27,12 @@
             </StackPanel>
             <DataGrid x:Name="dtgData" Margin="40,120,40,10" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}"/>
-                    <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
-                    <DataGridTextColumn Header="Nivel académico" Binding="{Binding Grade}"/>
-                    <DataGridTextColumn Header="Disciplina" Binding="{Binding SubjectId}"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding NameC}"/>
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding LastNameC}"/>
+                    <DataGridTextColumn Header="E-mail" Binding="{Binding EmailC}"/>
+                    <DataGridTextColumn Header="Nivel académico" Binding="{Binding GradeC}"/>
+                    <DataGridTextColumn Header="Disciplina" Binding="{Binding SubjectName}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

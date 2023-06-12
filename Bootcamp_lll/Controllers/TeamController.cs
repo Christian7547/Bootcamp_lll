@@ -8,9 +8,10 @@ using System.Windows.Controls;
 
 namespace Bootcamp_lll.Controllers
 {
-    internal class TeamController
+    public class TeamController
     {
         List<Team> Teams = new List<Team>();
+
         ManagerController? _managerController;
         SubjectController? _sujectController;
         ContestantController? _contestantController;
@@ -18,6 +19,38 @@ namespace Bootcamp_lll.Controllers
         public List<Team> GetMany()
         {
             return Teams;
+        }
+
+        public ListBox GetTeams(ListBox listBox, ManagerController managerController, SubjectController subjectController)
+        {
+            var query = GetMany().Join(managerController.GetMany().Join(subjectController.GetMany(), m => m.SubjectId, s => s.Id, 
+                (m, s) => new
+                {
+                    ManagerID = m.Id,
+                    ManagerName = m.Name + " " + m.LastName,
+                    Subject_Name = s.Name
+                }),
+                t => t.ManagerId, m => m.ManagerID,
+                (t, m) => new
+                {
+                    TName = t.TeamName,
+                    SName = m.Subject_Name,
+                    MName = m.ManagerName,
+                    Contestans = t.Contestants
+                }).GroupBy(q => q.TName);
+
+            foreach(var item in query)
+            {
+                listBox.Items.Add(item.Key!.ToUpper());
+                foreach(var i in item)
+                {
+                    listBox.Items.Add(i.SName);
+                    listBox.Items.Add(i.MName);
+                    i.Contestans.ForEach(c => listBox.Items.Add(c.Name + " " + c.LastName));
+                }
+                listBox.Items.Add("-----------------------");
+            }
+            return listBox;
         }
 
         public void NewTeam(Team team)
@@ -29,6 +62,7 @@ namespace Bootcamp_lll.Controllers
         {
             _managerController = new();
             _sujectController = new();
+            List<Manager> managers = new List<Manager>();
             var query = _managerController.GetMany().Join(_sujectController.GetMany(), m => m.SubjectId, s => s.Id,
                 (m, s) => new
                 {
@@ -36,11 +70,9 @@ namespace Bootcamp_lll.Controllers
                     SubjectID = s.Id,
                     ManagerID = m.Id
                 }).Where(q => q.SubjectID.Equals(subjectId));
-            foreach (var item in query)
-            {
-                comboBox.Items.Add(item.ManagerName);
-                comboBox.SelectedValue = item.ManagerID;
-            }
+            foreach(var item in query)
+                managers.Add(new Manager { Id = item.ManagerID, Name = item.ManagerName });
+            comboBox.ItemsSource = managers;
             return comboBox;
         }
 
@@ -57,15 +89,6 @@ namespace Bootcamp_lll.Controllers
                 }).Where(q => q.SubjectID.Equals(subjectId));
             foreach (var item in query)
                 dataGrid.Items.Add(item);
-        }
-
-        public string GetManager(int managerId)
-        {
-            _managerController = new();
-            var query = _managerController.GetMany().Where(m => m.Id.Equals(managerId))
-                .Select(m => m.Name + " " +m.LastName)
-                .FirstOrDefault();
-            return query!;
         }
     }
 }
