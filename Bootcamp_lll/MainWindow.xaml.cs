@@ -57,6 +57,15 @@ namespace Bootcamp_lll
         private void rdOptions_Click(object sender, RoutedEventArgs e)
         {
             PagesNavigation.Navigate(new System.Uri("Views/OptionsPage.xaml", UriKind.RelativeOrAbsolute));
+
+            if (rdOptions.IsChecked == true)
+            {
+                rdHome.IsChecked = false;
+                rdUsers.IsChecked = false;
+                rdListUsers.IsChecked = false;
+            }
+
+            rdOptions.IsChecked = true;
         }
         #endregion
     }
