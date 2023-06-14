@@ -15,7 +15,7 @@
     <Border Background="White" CornerRadius="10" BorderBrush="#5B7FFF" BorderThickness="3">
         <Grid>
             <StackPanel Height="30" VerticalAlignment="Top" Margin="10">
-                <TextBlock Text="Nuevo participante" FontSize="18" FontWeight="Bold" Foreground="#5B7FFF"/>
+                <TextBlock x:Name="txbTitle" Text="Nuevo participante" FontSize="18" FontWeight="Bold" Foreground="#5B7FFF"/>
             </StackPanel>
             <StackPanel Margin="20 50 20 20">
                 <StackPanel >

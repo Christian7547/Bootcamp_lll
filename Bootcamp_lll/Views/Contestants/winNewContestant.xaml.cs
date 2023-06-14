@@ -14,6 +14,8 @@ namespace Bootcamp_lll.Views
         Contestant? _contestant;
         ContestantController _contestanController;
 
+        int id;
+
         public winNewContestant(ContestantController contestantController)
         {
             InitializeComponent();
@@ -42,6 +44,15 @@ namespace Bootcamp_lll.Views
             Close();
             uscMenuContestant._uscContestant!.dtgData.Items.Clear();
             uscMenuContestant._uscContestant!.Select();
+        }
+
+        public void UpdateContestant(Contestant contestant)
+        {
+            txbTitle.Text = "Actualizar registro";
+            txtName.Text = contestant.Name;
+            txtLastName.Text = contestant.LastName;
+            txtEmail.Text = contestant.Email;
+            ShowDialog();
         }
     }
 }

@@ -24,7 +24,18 @@
                         <TextBlock Text="Nuevo" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <ComboBox x:Name="cmbFilter" Margin="270 0 0 0" Width="180" Height="40" materialDesign:HintAssist.Hint="Filtrar por:" materialDesign:HintAssist.IsFloating="True"/>
+                <ComboBox x:Name="cmbFilter" Width="180" Height="40" Margin="100 0 0 0" materialDesign:HintAssist.Hint="Filtrar por:" materialDesign:HintAssist.IsFloating="True" SelectionChanged="cmbFilter_SelectionChanged">
+                    <ComboBoxItem Content="Materia"/>
+                    <ComboBoxItem Content="Encargado"/>
+                    <ComboBoxItem Content="Nivel académico"/>
+                </ComboBox>
+                <ComboBox x:Name="cmbSubjects" Width="180" Height="40" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="20 0 0 0" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Elemento" SelectionChanged="cmbSubjects_SelectionChanged"/>
+                <ComboBox x:Name="cmbManagers" Width="180" Height="40" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="20 0 0 0" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Elemento" Visibility="Collapsed" SelectionChanged="cmbManagers_SelectionChanged"/>
+                <ComboBox x:Name="cmbAcademic" Width="180" Height="40" Margin="20 0 0 0" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Elemento" Visibility="Collapsed" SelectionChanged="cmbAcademic_SelectionChanged">
+                    <ComboBoxItem Content="Secundaria"/>
+                    <ComboBoxItem Content="Universitario"/>
+                    <ComboBoxItem Content="Postgrado"/>
+                </ComboBox>
             </StackPanel>
             <ListBox x:Name="lstTeams" Width="700" Margin="50,125,50,35"/>
         </Grid>

@@ -1,4 +1,6 @@
 ﻿using Bootcamp_lll.Controllers;
+using Bootcamp_lll.Models;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,6 +30,11 @@ namespace Bootcamp_lll.Views
         {
             winNewContestant winNewContestant = new(_controller);
             winNewContestant.ShowDialog();
+        }
+
+        private void dtgData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

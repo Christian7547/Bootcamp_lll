@@ -46,5 +46,16 @@ namespace Bootcamp_lll.Controllers
                 dataGrid.Items.Add(item);
             return dataGrid;
         }
+
+        public bool Update(Contestant contestant)
+        {
+            var query = contestants.Find(c => c.Id.Equals(contestant.Id));
+            if (query != null)
+            {
+                contestant = query;
+                return true;
+            }
+            return false;
+        }
     }
 }

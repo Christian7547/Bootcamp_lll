@@ -18,14 +18,14 @@
                 <TextBlock Text="Participantes" FontSize="25" FontWeight="Bold" Margin="10" HorizontalAlignment="Center" Foreground="#5B7FFF"/>
             </StackPanel>
             <StackPanel Margin="0 65 0 0" Height="50" VerticalAlignment="Top">
-                <Button x:Name="btnNew" Margin="450 5 10 10" Width="120" Height="40" Click="btnNew_Click">
+                <Button x:Name="btnNew" Margin="500 5 10 10" Width="120" Height="40" Click="btnNew_Click">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Add" FontWeight="Bold" Height="30" Width="30"/>
                         <TextBlock Text="Nuevo" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <DataGrid x:Name="dtgData" Margin="40,120,40,10" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid x:Name="dtgData" Margin="40,120,40,10" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dtgData_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding NameC}"/>
