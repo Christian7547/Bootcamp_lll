@@ -12,11 +12,11 @@ namespace Bootcamp_lll.Controllers
     {
         List<Contestant> contestants = new List<Contestant>()
         {
-            new Contestant{ Id = 1, Name = "Luis", LastName = "Mendoza", Grade = "Secundaria", SubjectId = 1, UserName = "luMen", Password = "hola", Email = "lu@gmail.com" },
-            new Contestant{ Id = 2, Name = "Carlos", LastName = "Ibañez", Grade = "Secundaria", SubjectId = 1, UserName = "carI", Password = "hola", Email = "carlos@gmail.com" },
-            new Contestant{ Id = 3, Name = "Rocio", LastName = "García", Grade = "Universitario", SubjectId = 3, UserName = "RoCia", Password = "hola", Email = "rocio@gmail.com" },
-            new Contestant{ Id = 4, Name = "Antonio", LastName = "Ugarte", Grade = "Postgrado", SubjectId = 4, UserName =  "UgarteNio", Password = "hola", Email = "antonio@gmail.com" },
-            new Contestant{ Id = 5, Name= "Estephany", LastName = "Aguilar", Grade = "Universitario", SubjectId = 3, UserName = "Estelar", Password = "hola", Email = "aguilar@gmail.com"},
+            new Contestant{ Id = 1, Name = "Luis", LastName = "Mendoza", Grade = "Secundaria", SubjectId = 1, UserName = "luMen", Password = "hola"},
+            new Contestant{ Id = 2, Name = "Carlos", LastName = "Ibañez", Grade = "Secundaria", SubjectId = 2, UserName = "carI", Password = "hola" },
+            new Contestant{ Id = 3, Name = "Rocio", LastName = "García", Grade = "Universitario", SubjectId = 3, UserName = "RoCia", Password = "hola" },
+            new Contestant{ Id = 4, Name = "Antonio", LastName = "Ugarte", Grade = "Postgrado", SubjectId = 4, UserName =  "UgarteNio", Password = "hola" },
+            new Contestant{ Id = 5, Name= "Estephany", LastName = "Aguilar", Grade = "Universitario", SubjectId = 5, UserName = "Estelar", Password = "hola"},
         };
 
         public List<Contestant> GetMany()
@@ -38,7 +38,7 @@ namespace Bootcamp_lll.Controllers
                     ID = c.Id,
                     NameC = c.Name,
                     LastNameC = c.LastName,
-                    EmailC = c.Email,
+                    EmailC = c.UserName,
                     GradeC = c.Grade,
                     SubjectName = s.Name
                 });

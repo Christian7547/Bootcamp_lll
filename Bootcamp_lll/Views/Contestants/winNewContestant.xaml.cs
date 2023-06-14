@@ -36,7 +36,7 @@ namespace Bootcamp_lll.Views
                 Id = _contestanController.GetMany().Count + 1,
                 Name = txtName.Text,
                 LastName = txtLastName.Text,
-                Email = txtEmail.Text,
+                UserName = txtEmail.Text,
                 Grade = cmbGrade.Text,
                 SubjectId = int.Parse(cmbSubject.SelectedValue.ToString()!)
             };
@@ -51,7 +51,7 @@ namespace Bootcamp_lll.Views
             txbTitle.Text = "Actualizar registro";
             txtName.Text = contestant.Name;
             txtLastName.Text = contestant.LastName;
-            txtEmail.Text = contestant.Email;
+            txtEmail.Text = contestant.UserName;
             ShowDialog();
         }
     }

@@ -25,7 +25,7 @@
                     <TextBox x:Name="txtLastName" Margin="15" materialDesign:HintAssist.Hint="Apellido del participante" materialDesign:HintAssist.IsFloating="True" Width="300"/>
                 </StackPanel>
                 <StackPanel >
-                    <TextBox x:Name="txtEmail" Margin="15" materialDesign:HintAssist.Hint="Correo" materialDesign:HintAssist.IsFloating="True" Width="300"/>
+                    <TextBox x:Name="txtEmail" Margin="15" materialDesign:HintAssist.Hint="Nombre de Usuario" materialDesign:HintAssist.IsFloating="True" Width="300"/>
                 </StackPanel>
                 <StackPanel >
                     <ComboBox x:Name="cmbGrade" materialDesign:HintAssist.Hint="Nivel académico" materialDesign:HintAssist.IsFloating="True" Margin="15" Width="300">

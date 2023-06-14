@@ -11,11 +11,11 @@ namespace Bootcamp_lll.Controllers
     {
         List<Manager> managers = new()
         {
-            new Manager{ Id = 1, Name = "Germán", LastName = "Rico", CI = "4859562", Email = "german@gmail.com", SubjectId = 1},
-            new Manager{ Id = 2, Name = "Pavel", LastName = "Caceres", CI = "4596231", Email = "pavel@gmail.com", SubjectId = 1},
-            new Manager{ Id = 3, Name = "Ramiro", LastName = "Ramallo", CI = "5987456", Email = "ramiro@gmail.com", SubjectId = 3},
-            new Manager{ Id = 4, Name = "Oscar", LastName = "Contreras", CI = "6859421", Email = "oscar@gmail.com", SubjectId = 4},
-            new Manager{ Id = 5, Name = "Diego", LastName = "Araos", CI = "7895624", Email = "diego@gmail.com", SubjectId = 2},
+            new Manager{ Id = 1, Name = "Germán", LastName = "Rico", CI = "4859562", UserName = "german@gmail.com", SubjectId = 1},
+            new Manager{ Id = 2, Name = "Pavel", LastName = "Caceres", CI = "4596231", UserName = "pavel@gmail.com", SubjectId = 1},
+            new Manager{ Id = 3, Name = "Ramiro", LastName = "Ramallo", CI = "5987456", UserName = "ramiro@gmail.com", SubjectId = 3},
+            new Manager{ Id = 4, Name = "Oscar", LastName = "Contreras", CI = "6859421", UserName = "oscar@gmail.com", SubjectId = 4},
+            new Manager{ Id = 5, Name = "Diego", LastName = "Araos", CI = "7895624", UserName = "diego@gmail.com", SubjectId = 2},
         };
 
         public List<Manager> GetMany()
