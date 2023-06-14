@@ -17,7 +17,7 @@
                     Completed="Storyboard_Completed">
 
             <PointAnimationUsingPath Storyboard.TargetProperty="Point"
-                                     Duration="0:0:20">
+                                     Duration="0:0:2.5">
 
                 <PointAnimationUsingPath.PathGeometry>
 
@@ -29,12 +29,12 @@
             </PointAnimationUsingPath>
 
             <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsLargeArc"
-                                            Duration="0:0:20">
+                                            Duration="0:0:2.5">
 
                 <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                          Value="False" />
 
-                <DiscreteBooleanKeyFrame KeyTime="0:0:10"
+                <DiscreteBooleanKeyFrame KeyTime="0:0:1.25"
                                          Value="True" />
 
             </BooleanAnimationUsingKeyFrames>

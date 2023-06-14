@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Bootcamp_lll
 {
-    /// <summary>
-    /// Lógica de interacción para Circular_ProgressBar_UC.xaml
-    /// </summary>
     public partial class Circular_ProgressBar_UC : UserControl
     {
         public Circular_ProgressBar_UC()
@@ -34,9 +31,8 @@ namespace Bootcamp_lll
 
                 if (mainWindow.Start_Btn.IsChecked == false)
                 {
-                   
-                    MainWindow win = new MainWindow();
-                    win.Show();
+                    winLogin winLogin = new();
+                    winLogin.Show();
                     mainWindow.Close();
                 }
             }

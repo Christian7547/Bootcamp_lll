@@ -53,7 +53,7 @@ namespace Bootcamp_lll
         {
             
         }
-        private void rdUsers_Click(object sender, RoutedEventArgs e)
+        private void rdContestant_Click(object sender, RoutedEventArgs e)
         {
             uscMenuContestant uscMenuContestant = new(contestantController);
             gridMain.Children.Clear();
@@ -70,6 +70,18 @@ namespace Bootcamp_lll
         private void rdOptions_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void rdRegisterMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (rdOptions.IsChecked == true)
+            {
+                rdHome.IsChecked = false;
+                rdContestant.IsChecked = false;
+                rdTeams.IsChecked = false;
+            }
+
+            rdOptions.IsChecked = true;
         }
         #endregion
     }

@@ -1,24 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace Bootcamp_lll
 {
-    /// <summary>
-    /// Lógica de interacción para winStartApplication.xaml
-    /// </summary>
     public partial class winStartApplication : Window
     {
         public winStartApplication()
@@ -26,14 +12,12 @@ namespace Bootcamp_lll
             InitializeComponent();
         }
 
-        // Start / Stop Timer
-
         DispatcherTimer _timer = new DispatcherTimer();
         int counter = 0;
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            counter++;
+            counter = counter + 10;
             TimerLabel.Text = counter.ToString();
 
             if (counter == 100)
@@ -50,12 +34,12 @@ namespace Bootcamp_lll
 
             if (counter > 0)
             {
-                _timer.Tick -= timer_Tick;
+                _timer.Tick -= timer_Tick!;
                 counter = 0;
             }
 
-            _timer.Interval = TimeSpan.FromMilliseconds(188);
-            _timer.Tick += timer_Tick;
+            _timer.Interval = TimeSpan.FromMilliseconds(250);
+            _timer.Tick += timer_Tick!;
             _timer.Start();
         }
 
@@ -63,7 +47,7 @@ namespace Bootcamp_lll
         {
             if (counter > 0)
             {
-                _timer.Tick -= timer_Tick;
+                _timer.Tick -= timer_Tick!;
                 counter = 0;
             }
 
@@ -81,8 +65,6 @@ namespace Bootcamp_lll
         {
             ((Storyboard)cpb_uc.Resources["ProgressBarAnimation"]).Stop();
         }
-
-
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
