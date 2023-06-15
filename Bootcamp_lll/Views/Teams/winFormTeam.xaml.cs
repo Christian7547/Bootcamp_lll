@@ -25,11 +25,12 @@ namespace Bootcamp_lll.Views
         List<Contestant> contestants = new();
 
 
-        public winFormTeam(TeamController teamController, ContestantController contestant)
+        public winFormTeam(TeamController teamController, ContestantController contestant, ManagerController managerController)
         {
             InitializeComponent();
             _teamController = teamController;
             _contestantController = contestant;
+            _managerController = managerController;
             FillSubjectsComboBox();
         }
 
@@ -60,7 +61,7 @@ namespace Bootcamp_lll.Views
             
             if (cmbSubject.SelectedItem != null)
             {
-                _teamController.GetManagers(int.Parse(cmbSubject.SelectedValue.ToString()!), cmbManager);
+                _teamController.GetManagers(int.Parse(cmbSubject.SelectedValue.ToString()!), cmbManager, _managerController!);
                 _teamController.GetContestants(int.Parse(cmbSubject.SelectedValue.ToString()!), dtgData, _contestantController);
             }
         }

@@ -34,7 +34,11 @@ namespace Bootcamp_lll.Views
 
         private void dtgData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if(dtgData.SelectedItem != null)
+            {
+                var contestant = dtgData.SelectedItem as Contestant;
+                MessageBox.Show(contestant.ToString());
+            }
         }
     }
 }

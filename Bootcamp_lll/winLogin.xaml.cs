@@ -1,4 +1,5 @@
 ﻿using Bootcamp_lll.Controllers;
+using Bootcamp_lll.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,24 @@ namespace Bootcamp_lll
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             _userController = new();
-            if (_userController.Login(txtUserName.Text, txtPassword.Password))
+            User user = _userController.Login(txtUserName.Text, txtPassword.Password);
+            if (user != null)
             {
-                MainWindow main = new();
-                Close();
-                main.ShowDialog();
+                switch (user.Role)
+                {
+                    case 1:
+                        MainWindow main = new();
+                        Close();
+                        main.ShowDialog();
+                        break;
+                    case 2:
+                        MainWindow mainManager = new();
+                        mainManager.rdTeams.Visibility = Visibility.Collapsed;
+                        mainManager.rdManagers.Visibility = Visibility.Collapsed;
+                        Close();
+                        mainManager.ShowDialog();
+                        break;
+                }
             }
         }
     }

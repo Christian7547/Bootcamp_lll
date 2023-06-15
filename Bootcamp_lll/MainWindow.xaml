@@ -489,7 +489,8 @@
                                              Content="Encargados"
                                              Style="{DynamicResource MenuRadioButtonStyle}"
                                              Tag="{DynamicResource addTeams}"
-                                             Margin="0 5 0 5"/>
+                                             Margin="0 5 0 5"
+                                             Click="rdManagers_Click"/>
                             </StackPanel>
                         </Grid>
                         <RadioButton x:Name="rdTeams"

@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Bootcamp_lll.Views.uscMenuContestant"
+﻿<UserControl x:Class="Bootcamp_lll.Views.Managers.uscMenuManagers"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Bootcamp_lll.Views"
+             xmlns:local="clr-namespace:Bootcamp_lll.Views.Managers"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,7 +15,7 @@
     <Border Background="White" CornerRadius="15">
         <Grid>
             <StackPanel Height="50" VerticalAlignment="Top" Margin="15">
-                <TextBlock Text="Participantes" FontSize="25" FontWeight="Bold" Margin="10" HorizontalAlignment="Center" Foreground="#5B7FFF"/>
+                <TextBlock Text="Encargados" FontSize="25" FontWeight="Bold" Margin="10" HorizontalAlignment="Center" Foreground="#5B7FFF"/>
             </StackPanel>
             <StackPanel Margin="0 65 0 0" Height="50" VerticalAlignment="Top">
                 <Button x:Name="btnNew" Margin="500 5 10 10" Width="120" Height="40" Click="btnNew_Click">
@@ -25,13 +25,13 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <DataGrid x:Name="dtgData" Margin="40,120,40,10" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dtgData_SelectionChanged">
+            <DataGrid x:Name="dtgData" Margin="40,120,40,10" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding NameC}"/>
-                    <DataGridTextColumn Header="Apellido" Binding="{Binding LastNameC}"/>
-                    <DataGridTextColumn Header="E-mail" Binding="{Binding EmailC}"/>
-                    <DataGridTextColumn Header="Nivel académico" Binding="{Binding GradeC}"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding NameM}"/>
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding LastNameM}"/>
+                    <DataGridTextColumn Header="C.I." Binding="{Binding CIM}"/>
+                    <DataGridTextColumn Header="Usuario" Binding="{Binding UserManager}"/>
                     <DataGridTextColumn Header="Disciplina" Binding="{Binding SubjectName}"/>
                 </DataGrid.Columns>
             </DataGrid>

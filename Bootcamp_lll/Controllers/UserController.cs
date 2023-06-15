@@ -11,14 +11,40 @@ namespace Bootcamp_lll.Controllers
     {
         List<User> users = new List<User>()
         {
-            new User{ UserName = "admin", Password = "admin"}
+            new User{ UserName = "admin", Password = "admin", Role = 1},
+            new User{ UserName = "manager", Password = "manager", Role = 2}
         };
 
-        public bool Login(string username, string password)
+        public UserController()
+        {
+            //AddedManagersToUsers();
+        }
+
+        public User Login(string username, string password)
         {
             var login = users.Where(c => c.UserName!.Equals(username) && c.Password!.Equals(password))
                 .FirstOrDefault();
-            return login != null ? true : false;
+            return login != null ? login : null!;
+        }
+
+        public void NewUser(User user)
+        {
+            users.Add(user);
+        }
+
+        public void AddedManagersToUsers()
+        {
+            ManagerController managerController = new();
+            foreach(Manager manager in managerController.GetMany())
+            {
+                User user = new User()
+                {
+                    UserName = manager.UserName,
+                    Password = manager.Password,
+                    Role = manager.Role
+                };
+                users.Add(user);
+            }
         }
     }
 }

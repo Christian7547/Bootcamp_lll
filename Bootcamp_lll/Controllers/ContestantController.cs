@@ -13,9 +13,9 @@ namespace Bootcamp_lll.Controllers
         List<Contestant> contestants = new List<Contestant>()
         {
             new Contestant{ Id = 1, Name = "Luis", LastName = "Mendoza", Grade = "Secundaria", SubjectId = 1, UserName = "luMen", Password = "hola"},
-            new Contestant{ Id = 2, Name = "Carlos", LastName = "Ibañez", Grade = "Secundaria", SubjectId = 2, UserName = "carI", Password = "hola" },
+            new Contestant{ Id = 2, Name = "Carlos", LastName = "Ibañez", Grade = "Secundaria", SubjectId = 1, UserName = "carI", Password = "hola"},
             new Contestant{ Id = 3, Name = "Rocio", LastName = "García", Grade = "Universitario", SubjectId = 3, UserName = "RoCia", Password = "hola" },
-            new Contestant{ Id = 4, Name = "Antonio", LastName = "Ugarte", Grade = "Postgrado", SubjectId = 4, UserName =  "UgarteNio", Password = "hola" },
+            new Contestant{ Id = 4, Name = "Antonio", LastName = "Ugarte", Grade = "Postgrado", SubjectId = 4, UserName =  "UgarteNio", Password = "hola"},
             new Contestant{ Id = 5, Name= "Estephany", LastName = "Aguilar", Grade = "Universitario", SubjectId = 5, UserName = "Estelar", Password = "hola"},
         };
 

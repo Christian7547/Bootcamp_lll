@@ -14,8 +14,6 @@ namespace Bootcamp_lll.Views
         Contestant? _contestant;
         ContestantController _contestanController;
 
-        int id;
-
         public winNewContestant(ContestantController contestantController)
         {
             InitializeComponent();

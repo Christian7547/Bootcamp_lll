@@ -70,12 +70,11 @@ namespace Bootcamp_lll.Controllers
             Teams.Add(team);
         }
 
-        public ComboBox GetManagers(int subjectId, ComboBox comboBox)
+        public ComboBox GetManagers(int subjectId, ComboBox comboBox, ManagerController managerController)
         {
-            _managerController = new();
             _sujectController = new();
             List<Manager> managers = new List<Manager>();
-            var query = _managerController.GetMany().Join(_sujectController.GetMany(), m => m.SubjectId, s => s.Id,
+            var query = managerController.GetMany().Join(_sujectController.GetMany(), m => m.SubjectId, s => s.Id,
                 (m, s) => new
                 {
                     ManagerName = m.Name + " " + m.LastName,

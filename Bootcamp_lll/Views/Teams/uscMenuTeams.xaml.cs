@@ -16,7 +16,7 @@ namespace Bootcamp_lll.Views
         {
             InitializeComponent();
             _uscMenuTeams = this;
-            this._teamController = teamController;
+            _teamController = teamController;
             _contestantController = contestantController;
             _managerController = managerController;
             _subjectController = subjectController;
@@ -25,7 +25,7 @@ namespace Bootcamp_lll.Views
 
         private void btnNewTeam_Click(object sender, RoutedEventArgs e)
         {
-            winFormTeam winFormTeam = new(_teamController, _contestantController);
+            winFormTeam winFormTeam = new(_teamController, _contestantController, _managerController);
             winFormTeam.ShowDialog();
         }
 
