@@ -14,9 +14,16 @@ namespace Bootcamp_lll
         SubjectController subjectController = new();
         TeamController teamController = new();
 
+
         public MainWindow()
         {
             InitializeComponent();
+            LoadListContestant();
+        }
+
+        public void LoadListContestant()
+        {
+            contestantController.Recuperar();
         }
 
         #region Effect to Window

@@ -36,8 +36,8 @@
                 </StackPanel>
                 <DataGrid x:Name="dtgData" Margin="15" Height="200">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Participante" Binding="{Binding ContestantName}"/>
-                        <DataGridTextColumn Header="Nivel académico" Binding="{Binding Academic}"/>
+                        <DataGridTextColumn Header="Participante" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Nivel académico" Binding="{Binding Grade}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

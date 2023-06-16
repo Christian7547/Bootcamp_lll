@@ -37,7 +37,29 @@
                     <ComboBoxItem Content="Postgrado"/>
                 </ComboBox>
             </StackPanel>
-            <ListBox x:Name="lstTeams" Width="700" Margin="50,125,50,35"/>
+            <DataGrid x:Name="dtgShowTeamsTeams" Margin="140,140,140,200" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Equipo" Binding="{Binding TeamName}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnDetails" Click="btnDetails_Click">
+                                    <materialDesign:PackIcon Kind="Details" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <DataGrid x:Name="dtgContestantsByTeam" Margin="140,310,140,35" IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Participante" Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock HorizontalAlignment="Left" Margin="140,288,0,0" TextWrapping="Wrap" Text="Integrantes:" VerticalAlignment="Top"/>
         </Grid>
     </Border>
 </UserControl>

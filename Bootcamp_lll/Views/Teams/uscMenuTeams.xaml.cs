@@ -1,4 +1,6 @@
 ﻿using Bootcamp_lll.Controllers;
+using Bootcamp_lll.Models;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -31,7 +33,7 @@ namespace Bootcamp_lll.Views
 
         public void Select()
         {
-            _teamController.GetTeams(lstTeams, _managerController, _subjectController, _contestantController);
+            _teamController.GetTeams(dtgShowTeamsTeams);
         }
 
         private void cmbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -63,22 +65,35 @@ namespace Bootcamp_lll.Views
 
         private void cmbSubjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lstTeams.Items.Clear();
             if(cmbSubjects.SelectedItem != null)
             {
+                dtgContestantsByTeam.ItemsSource = null;
                 int selected = int.Parse(cmbSubjects.SelectedValue.ToString()!);
-                _teamController.FilterBySubject(selected, lstTeams, _managerController, _subjectController);
+                _teamController.FilterBySubject(selected, dtgShowTeamsTeams);
             }
         }
 
         private void cmbManagers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lstTeams.Items.Clear();
+            if(cmbManagers.SelectedItem != null)
+            {
+                dtgShowTeamsTeams.ItemsSource = null;
+                int selected = int.Parse(cmbManagers.SelectedValue.ToString()!);
+                _teamController.FilterBySubject(selected, dtgShowTeamsTeams);
+            }
         }
 
         private void cmbAcademic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            dtgShowTeamsTeams.ItemsSource= null;
+        }
 
+        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as FrameworkElement;
+            var item = button!.DataContext as Team;
+
+            _teamController.GetContestantsByTeam(item!, dtgContestantsByTeam);
         }
     }
 }

@@ -5,19 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Bootcamp_lll.Controllers
 {
     public class ContestantController
     {
-        List<Contestant> contestants = new List<Contestant>()
-        {
-            new Contestant{ Id = 1, Name = "Luis", LastName = "Mendoza", Grade = "Secundaria", SubjectId = 1, UserName = "luMen", Password = "hola"},
-            new Contestant{ Id = 2, Name = "Carlos", LastName = "Ibañez", Grade = "Secundaria", SubjectId = 1, UserName = "carI", Password = "hola"},
-            new Contestant{ Id = 3, Name = "Rocio", LastName = "García", Grade = "Universitario", SubjectId = 3, UserName = "RoCia", Password = "hola" },
-            new Contestant{ Id = 4, Name = "Antonio", LastName = "Ugarte", Grade = "Postgrado", SubjectId = 4, UserName =  "UgarteNio", Password = "hola"},
-            new Contestant{ Id = 5, Name= "Estephany", LastName = "Aguilar", Grade = "Universitario", SubjectId = 5, UserName = "Estelar", Password = "hola"},
-        };
+        List<Contestant> contestants = new List<Contestant>();
+        string path = @"mi_archivo.json";
 
         public List<Contestant> GetMany()
         {
@@ -27,6 +23,26 @@ namespace Bootcamp_lll.Controllers
         public void AddNew(Contestant contestant)
         {
             this.contestants.Add(contestant);
+            Save();
+        }
+
+        public void Save()
+        {
+            string jsonSerialize = JsonConvert.SerializeObject(contestants, Formatting.Indented);   
+            File.WriteAllText(path, jsonSerialize);
+        }
+
+        public void Recuperar()
+        {
+            try
+            {
+                string jsonDeserialize = File.ReadAllText(path);
+                contestants = JsonConvert.DeserializeObject<List<Contestant>>(jsonDeserialize)!;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataGrid GetContestants(DataGrid dataGrid)

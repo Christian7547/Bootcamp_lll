@@ -43,6 +43,7 @@ namespace Bootcamp_lll.Views
         {
             Team team = new()
             {
+                Id = _teamController.GetMany().Count + 1,
                 TeamName = txtNameTeam.Text,
                 ManagerId = int.Parse(cmbManager.SelectedValue.ToString()!),
                 SubjectId = int.Parse(cmbSubject.SelectedValue.ToString()!),
@@ -50,7 +51,8 @@ namespace Bootcamp_lll.Views
             };
             _teamController.NewTeam(team);
             Close();
-            uscMenuTeams._uscMenuTeams!.lstTeams.Items.Clear();
+            uscMenuTeams._uscMenuTeams!.dtgShowTeamsTeams.ItemsSource = null;
+            uscMenuTeams._uscMenuTeams!.dtgShowTeamsTeams.Items.Clear(); ;
             uscMenuTeams._uscMenuTeams!.Select();
         }
 
@@ -68,12 +70,8 @@ namespace Bootcamp_lll.Views
 
         private void ckBoxIsSelected_Checked(object sender, RoutedEventArgs e)
         {
-            Contestant contestant = new()
-            {
-                Name = dtgData.SelectedItem.ToString(),
-                Grade = dtgData.SelectedItem.ToString()
-            };
-            contestants.Add(contestant);
+            Contestant contestant = (Contestant)dtgData.SelectedItem;
+            contestants.Add(contestant!);
         }
 
         void FillSubjectsComboBox()
